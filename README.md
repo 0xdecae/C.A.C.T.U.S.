@@ -9,7 +9,7 @@ Possible network architecture:
 		+ Functions:
 			= DDoS --> Forced MITM
 				- DDoS test case, they all dont have to communicate for that due to it only being a command
-				- However, the computing power may be a bit off, and the heat generated will be fucking disastrous
+				- However, the computing power may be a bit off, and the heat generated will be disastrous
 			= Distributed computing to possibly help with other functions
 	- SLC (cluster?) of Pirate boxes
   
