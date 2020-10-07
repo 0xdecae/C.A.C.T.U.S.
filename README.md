@@ -1,6 +1,7 @@
 # C.A.C.T.U.S.
 Compact Automated Cluster of Tactically Useful Services
 
+
 Ammunitions container cluster of 3-9 Raspberry Pi 3b+ with a Pi 4 lead node.
 
 Possible network architecture:
