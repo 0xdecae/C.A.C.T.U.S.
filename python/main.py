@@ -1,8 +1,8 @@
 
 # 'compute' is distributed to each node running 'dispynode'
-def attack():
-    from time import perf_counter
-    start = perf_counter()
+def attack(ip_to_attack, duration):
+    import time
+    start = time.perf_counter()
     # while True:
     #     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #     s.connect((target, port))
@@ -14,8 +14,9 @@ def attack():
     #     print(attack_num)
     #
     #     s.close()
-    end = perf_counter()
-    return start, end, end - start
+    time.sleep(duration)
+    end = time.perf_counter()
+    return start, ip_to_attack, end - start
 
 
 # dispy calls this function to indicate change in job status
