@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: dispy
+Version: 4.12.3
+Summary: Distributed and Parallel Computing with/for Python.
+Home-page: http://dispy.sourceforge.net
+Author: Giridhar Pemmasani
+Author-email: pgiri@yahoo.com
+License: Apache 2.0
+Description: UNKNOWN
+Keywords: distributed computing,parallel processing,mapreduce,hadoop,job scheduler
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development
